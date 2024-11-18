@@ -18,7 +18,7 @@ var fadeAmount = 0.01;
 
 function preload() {
     song = loadSound('DANDADAN.mp3');
-
+    
 }
 
 function setup() {
@@ -50,10 +50,11 @@ function setup() {
 
 function canvasPressed() {
     if(!isPlaying){
-        song.play(0, 0, 1, 32);
+        song.play(0, 0, 1);
     
         isPlaying = true;
     }
+
 
 }
 
