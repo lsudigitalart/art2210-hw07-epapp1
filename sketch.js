@@ -3,8 +3,9 @@
 let song;
 let isPlaying = false; 
 let startTime;
+let beatTime;
+let currentBeat = 0;
 
-var mic;
 var amp;
 var scale = 1;
 //Variables for Drawing
@@ -26,10 +27,8 @@ function setup() {
     let cvn = createCanvas(300, 500);
     background(200);
 
-    mic = new p5.AudioIn();
-    mic.start();
     amp = new p5.Amplitude();
-    amp.setInput(mic);
+    amp.setInput(song);
 
 
     cvn.mousePressed(canvasPressed);
@@ -45,21 +44,24 @@ function setup() {
     text('click to start', 100, 75, 100)
 
     fade = 0;
+    
 
 }
 
 function canvasPressed() {
     if(!isPlaying){
-        song.play(0, 0, 1);
+        song.play();
     
         isPlaying = true;
     }
-
 
 }
 
 
 function draw(){
+
+    
+
     rectMode(CORNER);
     //trying to get squares to fade with amp
     fill(0, 0, 0, fade);
@@ -82,9 +84,7 @@ function draw(){
     var y5 = offset + sin(angle + 1.6) * (scalar + scale);
 
     rectMode(CENTER);
-    noStroke();
-    let red = map(amp.getLevel(), 0, 1, 0, 255);
-    fill(red, 47, 47, fade);
+    fill(255);
 
 
     rect(50, y1 + 280, scale - 5, scale - 5);
